@@ -47,6 +47,10 @@ function update_fighter(f)
   -- durée portée par le coup reçu (cf. check_hit), pas fixe : un coup lourd
   -- immobilise plus longtemps qu'un coup léger
   if f.timer > f.stun then f.state="idle"; f.timer=0 end
+
+ elseif f.state=="block" then
+  -- coup paré : brève récupération de garde puis retour à idle (cf. check_hit)
+  if f.timer > f.stun then f.state="idle"; f.timer=0 end
  end
 
  f.x = mid(8, f.x, 120)
@@ -82,4 +86,9 @@ end
 function draw_fighter(f)
  -- placeholder rectangle, à remplacer par spr()/sspr() une fois les sprites prêts
  rectfill(f.x-4, f.y-16, f.x+4, f.y, f.player_index==0 and 11 or 9)
+ if f.state=="block" then
+  -- liseré de garde côté avant : feedback visuel du coup paré
+  local bx = f.x + 6*f.facing
+  line(bx, f.y-14, bx, f.y-2, 7)
+ end
 end

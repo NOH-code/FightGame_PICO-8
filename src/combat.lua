@@ -9,14 +9,28 @@ function check_hit(attacker, defender)
 
  if rects_overlap(ax, ay, attacker.hitbox.w, attacker.hitbox.h,
                    dx, dy, defender.hurtbox.w, defender.hurtbox.h) then
-  defender.health = max(0, defender.health - attacker.hitbox.damage)
-  defender.state = "hitstun"
-  defender.stun = attacker.hitbox.stun -- durée de stun propre au coup reçu
-  defender.timer = 0
-  defender.hitbox = nil -- le défenseur perd son attaque en cours : sinon son hitbox
-                        -- survivrait au hitstun et frapperait encore, revenu en idle
-  attacker.hitbox = nil -- évite le multi-hit sur une même frame active
-  sfx(sfx_hit)
+  -- garde : direction arrière maintenue au moment de l'impact, et libre de ses
+  -- mouvements (idle/walk) → chip damage minimal + état block bref au lieu du
+  -- hitstun complet. le facing pointant toujours vers l'adversaire, "arrière"
+  -- = direction opposée au facing. le ko par chip reste possible (choix assumé)
+  local back = (defender.facing==1 and defender.input.left)
+            or (defender.facing==-1 and defender.input.right)
+  if back and (defender.state=="idle" or defender.state=="walk") then
+   defender.health = max(0, defender.health - 1)
+   defender.state = "block"
+   defender.stun = 8 -- récupération de garde courte, fixe quel que soit le coup
+   defender.timer = 0
+   sfx(sfx_block)
+  else
+   defender.health = max(0, defender.health - attacker.hitbox.damage)
+   defender.state = "hitstun"
+   defender.stun = attacker.hitbox.stun -- durée de stun propre au coup reçu
+   defender.timer = 0
+   defender.hitbox = nil -- le défenseur perd son attaque en cours : sinon son hitbox
+                         -- survivrait au hitstun et frapperait encore, revenu en idle
+   sfx(sfx_hit)
+  end
+  attacker.hitbox = nil -- garde ou non : pas de multi-hit sur une même frame active
  end
 end
 
@@ -25,9 +39,13 @@ function rects_overlap(x1,y1,w1,h1,x2,y2,w2,h2)
 end
 
 -- oriente f vers son adversaire, appelé chaque frame depuis update_match.
--- pas pendant attack/hitstun : le hitbox actif reste cohérent avec le coup parti
+-- couvre idle/walk/block et la phase de startup d'une attaque ; à partir des
+-- frames actives le facing est verrouillé pour que le hitbox ne saute pas de
+-- l'autre côté en plein coup. jamais pendant hitstun.
 function update_facing(f, opp)
- if f.state=="idle" or f.state=="walk" then
+ local locked = f.state=="hitstun"
+  or (f.state=="attack" and f.timer >= f.current_move.startup)
+ if not locked then
   f.facing = (opp.x >= f.x) and 1 or -1
  end
 end

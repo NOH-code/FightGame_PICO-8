@@ -182,15 +182,20 @@ function start_round()
  game_state = "round_intro"
 end
 
--- affiche "round n" pendant 60 frames avant de rendre la main aux joueurs
+-- "round n" (60 frames) puis "fight!" (30 frames) : les inputs des joueurs
+-- ne deviennent actifs qu'au passage réel dans l'état match
 function update_round_intro()
  intro_timer += 1
- if intro_timer > 60 then game_state = "match" end
+ if intro_timer > 90 then game_state = "match" end
 end
 
 function draw_round_intro()
  draw_match()
- print("round "..round_num, 50, 48, 7)
+ if intro_timer <= 60 then
+  print("round "..round_num, 50, 48, 7)
+ else
+  print("fight!", 52, 48, 8)
+ end
 end
 
 function update_match()
