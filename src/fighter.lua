@@ -26,8 +26,10 @@ function update_fighter(f)
   -- attaques initiables depuis idle ou walk (choix assumé : interdire l'attaque
   -- en marchant rendrait le rush-down injouable). jamais depuis attack/hitstun :
   -- pas de cancel ni d'enchaînement.
-  if f.input.down and f.input.light then
-   start_move(f, c.moves.low)
+  -- o+x testé AVANT o seul et x seul : sinon presser les deux la même frame
+  -- déclencherait light (et heavy) au lieu de medium
+  if f.input.light and f.input.heavy then
+   start_move(f, c.moves.medium)
   elseif f.input.light then
    start_move(f, c.moves.light)
   elseif f.input.heavy then

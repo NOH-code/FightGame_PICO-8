@@ -8,6 +8,8 @@ end
 
 -- btn()  = maintenu (déplacement, garde)
 -- btnp() = pressé cette frame (attaques : évite l'auto-répétition)
+-- 2 boutons d'action seulement : o=light, x=heavy, o+x même frame=medium
+-- (la résolution o+x vs o seul se fait dans fighter.lua, medium testé en premier)
 function read_inputs(f)
  local idx = f.player_index
  f.input = {
@@ -15,7 +17,7 @@ function read_inputs(f)
   right = btn(1, idx),
   up    = btn(2, idx), -- pas encore utilisé : réservé pour le saut
   down  = btn(3, idx),
-  light = btnp(4, idx), -- bouton o : coup léger (bas+o = coup bas)
-  heavy = btnp(5, idx), -- bouton x : coup lourd
+  light = btnp(4, idx), -- bouton o
+  heavy = btnp(5, idx), -- bouton x
  }
 end
