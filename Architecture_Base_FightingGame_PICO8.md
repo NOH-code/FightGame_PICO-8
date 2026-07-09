@@ -330,3 +330,5 @@ movesets = {
 - **Manettes** : gérées nativement (voir réponse ci-dessus), rien à changer dans `input.lua` pour un usage standard 2 boutons.
 
 Cette base tourne telle quelle (deux rectangles qui marchent et se tapent dessus) — c'est voulu, pour valider la chaîne technique avant d'investir sur le contenu.
+
+

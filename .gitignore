@@ -1,0 +1,15 @@
+# exports pico-8 (regénérables) — on ne versionne que le .p8 source
+*.html
+*.js
+*.bin
+*.zip
+export/
+
+# cart binaire : illisible et non-diffable, on garde main.p8 en texte
+*.p8.png
+
+# backups pico-8
+*.p8.bak
+
+# config locale claude code : peut contenir des commandes autorisées avec secrets
+.claude/
