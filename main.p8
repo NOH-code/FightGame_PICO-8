@@ -1,9 +1,9 @@
 pico-8 cartridge // http://www.pico-8.com
-version 42
+version 41
 __lua__
 -- fighting game (noh-dev)
--- le code vit dans src/*.lua, relu par pico-8 à chaque `run`
--- les assets (gfx/map/sfx/music) vivent dans ce cart, via les éditeurs intégrés
+-- le code vit dans src/*.lua, relu par pico-8 a chaque `run`
+-- les assets (gfx/map/sfx/music) vivent dans ce cart, via les editeurs integres
 
 #include src/_boot.lua
 #include src/input.lua
