@@ -19,14 +19,17 @@ pico8
 
 ## Contrôles
 
+Mapping clavier par défaut de PICO-8 (`Player 1 : Cursors + ZX/NM/CV`, `Player 2 : SDFE + tab,Q / shift A`) :
+
 | Action | P1 (clavier) | P2 (clavier) |
 |---|---|---|
-| Déplacement | Flèches | `S` / `F` |
-| Coup léger (O) | `Z` ou `C` ou `N` | `Tab` ou `Q` |
-| Coup lourd (X) | `X` ou `V` ou `M` | `A` ou `Shift` |
+| Gauche / Droite | `←` / `→` | `S` / `F` |
+| Bas | `↓` | `D` |
+| Coup léger (bouton O) | `Z` / `C` / `N` | `Tab` / `LShift` |
+| Coup lourd (bouton X) | `X` / `V` / `M` | `Q` / `A` |
 | Coup bas | Bas + léger | Bas + léger |
 
-Les manettes sont détectées automatiquement par PICO-8, sans configuration.
+Les manettes sont détectées automatiquement par PICO-8, sans configuration. Pour remapper : commande `keyconfig` dans la console PICO-8.
 
 ## Personnages
 
