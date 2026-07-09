@@ -8,6 +8,7 @@ sfx_whoosh = 1 -- attaque dans le vide
 sfx_block  = 2 -- coup paré (pas encore d'état block)
 sfx_ko     = 3 -- k.o.
 sfx_menu   = 4 -- confirmation menu
+sfx_cursor = 5 -- déplacement curseur menu
 
 function init_audio()
  -- music(0) -- à activer une fois un pattern musical créé
