@@ -53,12 +53,12 @@ end
 -- séparation des corps : empêche les deux persos de se superposer.
 -- les deux sont toujours au sol à la même hauteur → test horizontal suffisant
 function separate_bodies(a, b)
- local w = 8 -- largeur des hurtbox (identique pour tous les persos)
+ local w = 12 -- largeur des hurtbox (gabarit sprites 24x32, identique pour tous les persos)
  local dist = abs(a.x - b.x)
  if dist >= w then return end
  local push = (w - dist) / 2
  local dir = (a.x < b.x) and -1 or 1
  if a.x == b.x then dir = (a.player_index==0) and -1 or 1 end
- a.x = mid(8, a.x + dir*push, 120)
- b.x = mid(8, b.x - dir*push, 120)
+ a.x = mid(12, a.x + dir*push, 116) -- mêmes bornes que update_fighter (gabarit 24px)
+ b.x = mid(12, b.x - dir*push, 116)
 end

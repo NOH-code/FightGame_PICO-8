@@ -11,20 +11,24 @@ characters = {
   name = "volt",
   speed = 2.0,
   health = 100,
+  spr_n = 0, -- sprite de base, bloc 3x4 cellules (24x32) : spr(0, x, y, 3, 4)
   moves = {
-   light  = { startup=2, active=3, recovery=8,  damage=5,  range=6,  hy=-12, size=6, stun=10 },
-   medium = { startup=4, active=4, recovery=11, damage=8,  range=7,  hy=-11, size=6, stun=14 },
-   heavy  = { startup=6, active=5, recovery=14, damage=11, range=8,  hy=-12, size=6, stun=18 },
+   -- portées et hy recalés sur le gabarit sprite 24x32 (hy=-16 = hauteur du torse)
+   light  = { startup=2, active=3, recovery=8,  damage=5,  range=10, hy=-16, size=6, stun=10 },
+   medium = { startup=4, active=4, recovery=11, damage=8,  range=11, hy=-16, size=6, stun=14 },
+   heavy  = { startup=6, active=5, recovery=14, damage=11, range=12, hy=-16, size=6, stun=18 },
   },
  },
  [1] = {
   name = "torque",
   speed = 0.8,
   health = 100,
+  spr_n = 3, -- sprite de base, bloc 3x4 cellules (24x32) : spr(3, x, y, 3, 4)
   moves = {
-   light  = { startup=5,  active=5, recovery=10, damage=8,  range=14, hy=-12, size=7, stun=12 },
-   medium = { startup=7,  active=6, recovery=14, damage=12, range=16, hy=-11, size=7, stun=16 },
-   heavy  = { startup=10, active=8, recovery=18, damage=17, range=18, hy=-12, size=8, stun=22 },
+   -- portées et hy recalés sur le gabarit sprite 24x32 (hy=-16 = hauteur du torse)
+   light  = { startup=5,  active=5, recovery=10, damage=8,  range=18, hy=-16, size=7, stun=12 },
+   medium = { startup=7,  active=6, recovery=14, damage=12, range=20, hy=-16, size=7, stun=16 },
+   heavy  = { startup=10, active=8, recovery=18, damage=17, range=22, hy=-16, size=8, stun=22 },
   },
  },
 }
