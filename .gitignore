@@ -13,3 +13,6 @@ export/
 
 # config locale claude code : peut contenir des commandes autorisées avec secrets
 .claude/
+
+# apercus de verification regenerables (tools/make_assets.py + reconstruction)
+assets/_preview_*.png

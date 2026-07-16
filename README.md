@@ -59,7 +59,7 @@ src/
   data.lua       ← personnages et frame data
 ```
 
-⚠️ Les sprites, la map, les SFX et la musique **ne peuvent pas** être externalisés : ils vivent dans les sections `__gfx__` / `__map__` / `__sfx__` / `__music__` de `main.p8` et s'éditent uniquement via les éditeurs intégrés de PICO-8 (`Esc` → onglets).
+⚠️ Les sprites, la map, les SFX et la musique **ne peuvent pas** être externalisés : ils vivent dans les sections `__gfx__` / `__map__` / `__sfx__` / `__music__` de `main.p8`. Les sections `__gfx__` (persos + tuiles) et `__map__` (décor 16×16) sont **générées par `tools/make_assets.py`** (Python + Pillow, idempotent) à partir des références de `images/` — ne pas les éditer à la main, modifier le script et le relancer. Les SFX/musique restent à composer dans les éditeurs intégrés de PICO-8 (`Esc` → onglets).
 
 ## Documentation
 
@@ -69,10 +69,9 @@ src/
 
 ## Prochaines étapes
 
-Placeholders assumés, à traiter dans cet ordre (cf. roadmap) :
-
-- Sprites — `draw_fighter()` dessine un rectangle coloré, à remplacer par `spr()`/`sspr()`
-- SFX — les index sont réservés dans `audio.lua`, les sons restent à dessiner
-- États manquants — saut, garde, knockdown (prévus dans la state machine du doc)
+- SFX — les 6 index sont branchés dans le code (`audio.lua`), les sons restent à dessiner dans l'éditeur
+- Musique — thème de combat + jingle de victoire
+- Poses dédiées — les états attack/hitstun/block utilisent des effets (décalage, flash) sur le sprite idle ; des frames dédiées amélioreraient le feel
+- États manquants — saut, knockdown (prévus dans la state machine du doc)
 - Transition `pause` — l'état existe dans `_boot.lua` mais aucun bouton ne le déclenche
 - Export HTML5 (`export game.html`) pour intégration portfolio
